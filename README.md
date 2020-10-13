@@ -4,7 +4,7 @@
 
 Serif is a static site generator and blogging system powered by markdown files.
 
-## First time use
+## First-time use
 
 To get started with Serif based on a site skeleton:
 
@@ -34,7 +34,7 @@ Now visit <http://localhost:8000/> to view the site.
 * [Template variables](#template-variables)
 * [License and contributing](#license-and-contributing)
 * [Developing Serif](#developing-serif)
-* [Changes and what's new](#changes-and-whats-new)
+* [Changes and what's new](#changes-and-what's-new)
 
 # Basics
 
@@ -94,7 +94,7 @@ The structure of a Serif site is something like this:
 │   └─── archive_page.html
 ├── _trash
 ├── _config.yml
-├── css
+├── CSS
 │   └── ...
 ├── js
 │   └── ...
@@ -108,7 +108,7 @@ The structure of a Serif site is something like this:
 
 ## `_site`
 
-This is where generated content gets saved. You should serve files out of here, be it with Nginx or Apache. You should assume everything in this directory will get erased at some point in future. Don't keep anything in it!
+This is where generated content gets saved. You should serve files out of here, be it with Nginx or Apache. You should assume everything in this directory will get erased at some point in the future. Don't keep anything in it!
 
 ## `_layouts`
 
@@ -150,7 +150,7 @@ Header name | Meaning
 `Title`     | Title for the draft or post.
 `Update`    | For a post, When given the value of `now` (i.e., `Update: now`), the `Updated` timestamp will be updated on the next site generation. Means nothing for drafts.
 `Publish`   | For a draft, when given the value of `now` (i.e., `Publish: now`), the draft will be published on the next site generation (and the `Created` set appropriately). Means nothing for a post.
-`Permalink` | For a post, overrides the default permalink value defined in `_config.yml`. **Note that this is interpolated**, so `:title` in the permalink value will be replaced according to regular permalink rules. Means nothing for a draft.
+`Permalink` | For a post, overrides the default permalink value defined in `_config.yml`. **Note that this is interpolated**, so `: title` in the permalink value will be replaced according to regular permalink rules. Means nothing for a draft.
 
 Note that while it is possible for you to manually handle timestamp values, it is recommended that you rely on using the value of `now` for `Update` and `Publish`.
 
@@ -182,14 +182,14 @@ archive:
   url_format: /blog/:year/:month
 ```
 
-If a permalink setting is not given in the configuration, the default is `/:title`. There are the following options available for permalinks:
+If a permalink setting is not given in the configuration, the default is `/: title`. There are the following options available for permalinks:
 
 Placeholder | Value
 ----------- |:-----
 `:title`    | URL "slug", e.g., "your-post-title"
-`:year`     | Year as given in the filename, e.g., "2012"
-`:month`    | Month as given in the filename, e.g., "01"
-`:day`      | Day as given in the filename, e.g., "28"
+`: year`     | Year as given in the filename, e.g., "2012"
+`: month`    | Month as given in the filename, e.g., "01"
+`: day`      | Day as given in the filename, e.g., "28"
 
 <b>NOTE</b>: if you change the permalink value, you will break existing URLs for published posts, in addition to, e.g., any feed ID values that depend on the post URL never changing.
 
@@ -197,7 +197,7 @@ Placeholder | Value
 
 Any other file in the directory's root will mostly be copied over exactly as-is.
 
-An exception is any file ending in `.html` or `.xml`. These files are assumed to contain [Liquid markup](http://liquidmarkup.org/) and will be processed as such. Header values will be available on `page`.
+An exception is any file ending in `.html` or `.xml`. These files are assumed to contain [Liquid markup](http://liquidmarkup.org/) and will be processed as such. Header values will be available on the `page`.
 
 For example, this would work as an `about.html`:
 
@@ -257,11 +257,11 @@ Updated: 2013-03-18T19:03:30+00:00
 
 # Archive pages
 
-By default, archive pages are made available at `/archive/:year/month`, e.g., `/archive/2012/11`. Individual archive pages can be customised by editing the `_templates/archive_page.html` file, which is used for each month.
+By default, archive pages are made available at `/archive/:year/month`, e.g., `/archive/2012/11`. Individual archive pages can be customized by editing the `_templates/archive_page.html` file, which is used for each month.
 
 Within the `archive_page.html` template, you have access to the variables `month`, which is a Ruby Date instance, and `posts` for the posts within that month.
 
-To disable archive pages, or configure the URL format, see the section on configuration.
+To disable archive pages, or configure the URL format, see the section on the configuration.
 
 ## Linking to archive pages
 
@@ -297,7 +297,7 @@ archive:
   url_format: /archive/:year/:month
 ```
 
-`permalink` is the URL format for individual post pages. The default permalink value is `/:title`. For an explanation of the format of permalinks, see above.
+`permalink` is the URL format for individual post pages. The default permalink value is `/: title`. For an explanation of the format of permalinks, see above.
 
 `archive` contains configuration options concerning archive pages. `enabled` can be used to toggle whether archive pages are generated. If set to `no` or `false`, no archive pages will be generated. By default, this value is `yes`.
 
@@ -305,7 +305,7 @@ The `archive` `url_format` configuration option is the format used for archive p
 
 # Deploying
 
-To serve the site, set any web server to use `/path/to/site/directory/_site` as its root. *NOTE:* URLs generated in the site do not contain `.html` "extensions" by default, so you will need a rewrite rule. Here's an example rewrite for nginx:
+To serve the site, set any webserver to use `/path/to/site/directory/_site` as its root. *NOTE:* URLs generated in the site do not contain `.html` "extensions" by default, so you will need a rewrite rule. Here's an example rewrite for Nginx:
 
 ```
 error_page 404 @not_found_page;
@@ -330,7 +330,7 @@ Use `ENV=production serif generate` to regenerate the site for production.
 These tags can be used in templates, in addition to the [standard Liquid filters and tags](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers). For example:
 
 ```
-{{ post.title | smarty }}
+{{ post. title | smarty }}
 
 {{ post.content | markdown }}
 
@@ -343,13 +343,13 @@ These tags can be used in templates, in addition to the [standard Liquid filters
 
   e.g., `{{ post.content | markdown }}`.
 
-  This runs the given input through a Markdown + SmartyPants renderer, with fenced codeblocks enabled.
+  This runs the given input through a Markdown + SmartyPants renderer, with fenced code blocks enabled.
 
 * `smarty`
 
   e.g., `{{ post.title | smarty }}`.
 
-  This runs the given input through a SmartyPants processor, so quotes, dashes and ellipses come out better. Note that the **`markdown` filter already does SmartyPants** processing.
+  This runs the given input through a SmartyPants processor, so quotes, dashes, and ellipses come out better. Note that the **` markdown` filter already does SmartyPants** processing.
 
 * `strip`
 
@@ -395,7 +395,7 @@ These should be available in any template:
 * `{{ site }}` --- a container for the site itself, containing:
     * `{{ site.posts }}` --- the published posts of the site
     * `{{ site.latest_update_time }}` --- a [Ruby `Time`](http://ruby-doc.org/core/Time.html) instance for the latest time that any post was updated. Useful for RSS/Atom feeds.
-    * `{{ site.archives }}` --- a nested hash structure that groups posts by month. See above for how to use it.
+    * `{{ site. archives }}` --- a nested hash structure that groups posts by month. See above for how to use it.
 * `{{ draft_preview }}` -- Set to true if this is part of generating a draft preview.
 * `{{ post_page }}` -- Set to true if this is part of generating a regular published post.
 
@@ -441,7 +441,7 @@ The quickest way to get changes contributed:
 
 1. Visit the [GitHub repository for Serif](https://github.com/aprescott/serif).
 2. [Fork the repository](https://help.github.com/articles/fork-a-repo).
-3. Check out a branch on the latest master for your change: `git checkout -b master new-feature` --- do not make changes on `master`! Make sure that anything added or changed has a test in the `spec/` directory. Use the existing files as examples. All tests for new/changed behaviour should pass.
+3. Check out a branch on the latest master for your change: `git checkout -b master new-feature` --- do not make changes on `master`! Make sure that anything added or changed has a test in the `spec/` directory. Use the existing files as examples. All tests for new/changed behavior should pass.
 4. [Send a pull request on GitHub](https://help.github.com/articles/fork-a-repo), including a description of what you've changed.
 
 # Developing Serif
